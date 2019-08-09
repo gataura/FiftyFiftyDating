@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "374101375781",
+    "firebase_url": "https://datingfbserg11.firebaseio.com",
+    "project_id": "datingfbserg11",
+    "storage_bucket": "datingfbserg11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374101375781:android:ff04a23a5d39f951",
+        "android_client_info": {
+          "package_name": "com.dreams.best"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374101375781-5dlo73a8p65ni7qldqf552m9rqn0oa3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGzY-FvcxMfUbZQXfEcx7soxmRbLrUcKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374101375781-5dlo73a8p65ni7qldqf552m9rqn0oa3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
