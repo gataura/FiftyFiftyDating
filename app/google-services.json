@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "374101375781",
-    "firebase_url": "https://datingfbserg11.firebaseio.com",
-    "project_id": "datingfbserg11",
-    "storage_bucket": "datingfbserg11.appspot.com"
+    "project_number": "971627830836",
+    "firebase_url": "https://fiftyfiftydating.firebaseio.com",
+    "project_id": "fiftyfiftydating",
+    "storage_bucket": "fiftyfiftydating.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:374101375781:android:ff04a23a5d39f951",
+        "mobilesdk_app_id": "1:971627830836:android:8cabb1652028e174",
         "android_client_info": {
-          "package_name": "com.dreams.best"
+          "package_name": "com.quickdating.fastmeet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "374101375781-5dlo73a8p65ni7qldqf552m9rqn0oa3m.apps.googleusercontent.com",
+          "client_id": "971627830836-u9v65a1b28nkd8788jpp1ctbrmv82mk2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGzY-FvcxMfUbZQXfEcx7soxmRbLrUcKc"
+          "current_key": "AIzaSyDiP_MzhsBH229XbECODcOvLeBau8vlMEc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "374101375781-5dlo73a8p65ni7qldqf552m9rqn0oa3m.apps.googleusercontent.com",
+              "client_id": "971627830836-u9v65a1b28nkd8788jpp1ctbrmv82mk2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

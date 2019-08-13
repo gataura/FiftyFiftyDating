@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.dreams.best">
+          package="com.quickdating.fastmeet">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -20,23 +20,23 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.ChromeTabsAdtivity">
+        <activity android:name="com.quickdating.fastmeet.ui.ChromeTabsAdtivity">
         </activity>
-        <activity android:name=".TheAgeChooseActivity">
-        </activity>
-        <activity
-                android:name=".TheProfileEditingActivity">
+        <activity android:name="com.quickdating.fastmeet.ViborVozrastaActivity">
         </activity>
         <activity
-                android:name=".PictureSetupActivity">
+                android:name="com.quickdating.fastmeet.RedactirovanieProfilyaActivity">
         </activity>
         <activity
-                android:name=".ProfileActivity"
+                android:name="com.quickdating.fastmeet.ViborPhotkiActivity">
+        </activity>
+        <activity
+                android:name="com.quickdating.fastmeet.TvoyProfilActivity"
                 android:label="@string/title_activity_user_profile"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".AnketaActivity">
+                android:name="com.quickdating.fastmeet.CheAnketaCheLiActivity">
         </activity>
 
         <meta-data
@@ -60,10 +60,10 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MainActivity">
+                android:name="com.quickdating.fastmeet.MainActivity">
         </activity>
         <activity
-                android:name=".ui.SplashActivity"
+                android:name="com.quickdating.fastmeet.ui.SplashActivity"
                 android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -72,12 +72,12 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.WebVActivity"
+                android:name="com.quickdating.fastmeet.ui.WebVActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".ui.DeepLinkWebView"
+                android:name="com.quickdating.fastmeet.ui.DeepLinkWebView"
                 android:launchMode="singleTask"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:autoVerify="true">
@@ -142,7 +142,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.ContentActivity"
+                android:name="com.quickdating.fastmeet.ui.ContentActivity"
                 android:launchMode="singleTask"/>
     </application>
 
