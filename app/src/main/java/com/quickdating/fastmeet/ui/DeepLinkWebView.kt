@@ -49,7 +49,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     var mCameraPhotoPath: String? = null
     val PERMISSION_CODE = 1000
     var size: Long = 0
-    lateinit var firebaseAnalytics: FirebaseAnalytics
+    lateinit var firebaseAnalytic: FirebaseAnalytics
     lateinit var prefs: SharedPreferences
     val REFERRER_DATA = "REFERRER_DATA"
     var gclid: String? = null
@@ -80,7 +80,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
         webView = web_view
         progressBar = progress_bar
         prefs = getSharedPreferences("com.datingonline.meet", Context.MODE_PRIVATE)
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        firebaseAnalytic = FirebaseAnalytics.getInstance(this)
         if (getPreferer(this) != "Didn't got any referrer follow instructions") {
             gclid = getPreferer(this)
         } else {
@@ -227,7 +227,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
                 bundle.putString("gclid", "")
             }
 
-            firebaseAnalytics.logEvent("reg_open", bundle)
+            firebaseAnalytic.logEvent("reg_open", bundle)
             prefs.edit().putBoolean("firstrun", false).apply()
         }
         verifyStoragePermissions(this)
