@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
@@ -38,6 +39,10 @@ class SplashActivity : BaseActivity() {
 
     lateinit var prefs: SharedPreferences
 
+    var sp: String? = null
+    val REFERRER_DATA = "REFERRER_DATA"
+    var gclid: String? = null
+
 
     override fun getContentView(): Int = R.layout.activity_web_v
 
@@ -47,6 +52,11 @@ class SplashActivity : BaseActivity() {
         progressBar = progress_bar
         firebaseAnalytic = FirebaseAnalytics.getInstance(this)
         prefs = getSharedPreferences("com.quickdating.fastmeet", Context.MODE_PRIVATE)
+        if (getPreferer(this) != "Didn't got any referrer follow instructions") {
+            gclid = getPreferer(this)
+        } else {
+            gclid = null
+        }
     }
 
     override fun setUI() {
@@ -56,6 +66,7 @@ class SplashActivity : BaseActivity() {
         YandexMetrica.activate(applicationContext, config)
         // Automatic tracking of user activity.
         YandexMetrica.enableActivityAutoTracking(this.application)
+        getGclid()
         webView.webViewClient = object : WebViewClient() {
             /**
              * Check if url contains key words:
@@ -104,11 +115,19 @@ class SplashActivity : BaseActivity() {
                         firebaseAnalytic.logEvent("web_view_all_open", bundle)
 
                         val taskUrl = dataSnapshot.child(WEB_URL).value as String
-                        startActivity(
-                            Intent(this@SplashActivity, WebVActivity::class.java)
-                                .putExtra(EXTRA_TASK_URL, taskUrl)
-                        )
-                        finish()
+                        if ((gclid != null) && (gclid != "")) {
+                            startActivity(
+                                Intent(this@SplashActivity, WebVActivity::class.java)
+                                    .putExtra(EXTRA_TASK_URL, "$taskUrl?external_id=$gclid")
+                            )
+                            finish()
+                        } else {
+                            startActivity(
+                                Intent(this@SplashActivity, WebVActivity::class.java)
+                                    .putExtra(EXTRA_TASK_URL, taskUrl)
+                            )
+                            finish()
+                        }
                     } else if (value == CHROMETABS) {
 
                         val bundle = Bundle()
@@ -148,5 +167,24 @@ class SplashActivity : BaseActivity() {
             Log.d("SplashErrActivity", "didn't work fetchremote")
             progressBar.visibility = View.GONE
         })
+    }
+
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
+    }
+
+    fun getGclid(){
+        if (gclid != null) {
+            if (gclid!!.contains("gclid")) {
+                gclid = gclid?.substringAfter("gclid=")
+                gclid = gclid?.substringBefore("&conv")
+            } else {
+                gclid = null
+            }
+        }
     }
 }

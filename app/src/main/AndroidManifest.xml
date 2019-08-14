@@ -20,6 +20,14 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
+        <receiver
+                android:name="com.quickdating.fastmeet.ReferrerDataReceiver"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
         <activity android:name="com.quickdating.fastmeet.ui.ChromeTabsAdtivity">
         </activity>
         <activity android:name="com.quickdating.fastmeet.ViborVozrastaActivity">
