@@ -17,9 +17,14 @@ import com.quickdating.fastmeet.*
 import com.quickdating.fastmeet._core.BaseActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.onesignal.OneSignal
+import com.quickdating.fastmeet.service.mUserIdClient
 import kotlinx.android.synthetic.main.activity_web_v.*
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.collections.HashMap
 
 
@@ -37,7 +42,11 @@ class SplashActivity : BaseActivity() {
 
     lateinit var firebaseAnalytic: FirebaseAnalytics
 
+    var userId = ""
+
     lateinit var prefs: SharedPreferences
+
+    private var client = mUserIdClient().build()
 
     var sp: String? = null
     val REFERRER_DATA = "REFERRER_DATA"
@@ -45,6 +54,9 @@ class SplashActivity : BaseActivity() {
 
 
     override fun getContentView(): Int = R.layout.activity_web_v
+
+
+    private fun generateId() = client.generateId()
 
 
     override fun initUI() {
@@ -57,6 +69,10 @@ class SplashActivity : BaseActivity() {
         } else {
             gclid = null
         }
+        OneSignal.startInit(this)
+            .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+            .unsubscribeWhenNotificationsAreDisabled(true)
+            .init()
     }
 
     override fun setUI() {
@@ -75,7 +91,7 @@ class SplashActivity : BaseActivity() {
              */
             @SuppressLint("deprecated")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url.contains("/main")) {
+                if (url.contains("/money")) {
                     // task url for web view or browser
                     var value = prefs.getString("show_in", "chrome_tabs")
                     val map = HashMap<String, Any>()
@@ -105,7 +121,23 @@ class SplashActivity : BaseActivity() {
 
                         }
 
-                        prefs.edit().putBoolean("firstrun", false).apply()
+                        generateId().enqueue(object: Callback<String> {
+                            override fun onFailure(call: Call<String>?, t: Throwable?) {
+                                Log.d("UserId", "jopa")
+                            }
+
+                            override fun onResponse(call: Call<String>?, response: Response<String>?) {
+                                if (response?.body() != null) {
+                                    val userIdBundle = Bundle()
+                                    userIdBundle.putString("userId", response.body())
+
+                                    firebaseAnalytic.logEvent("userId", userIdBundle)
+
+                                    prefs.edit().putBoolean("firstrun", false).apply()
+                                }
+                            }
+
+                        })
                     }
 
                     if (value == WEB_VIEW) {

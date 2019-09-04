@@ -1,8 +1,13 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -14,6 +19,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        manifestPlaceholders = [
+                onesignal_app_id: 'e7e86427-d457-4656-b433-a84bef362c81',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
     }
     buildTypes {
         release {
@@ -40,12 +50,20 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'androidx.room:room-runtime:2.1.0-alpha04'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    implementation 'com.onesignal:OneSignal:[3.11.2, 3.99.99]'
+
     // Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-config:16.4.0'
-    implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.google.firebase:firebase-messaging:17.5.0'
-    implementation 'com.google.firebase:firebase-dynamic-links:16.1.8'
+    implementation 'com.google.firebase:firebase-core:17.0.1'
+    implementation 'com.google.firebase:firebase-config:18.0.0'
+    implementation 'com.google.firebase:firebase-database:18.0.1'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-dynamic-links:18.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
     //Chrome Tabs
     implementation 'androidx.browser:browser:1.0.0'
@@ -73,4 +91,3 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
 }
 
-apply plugin: 'com.google.gms.google-services'
