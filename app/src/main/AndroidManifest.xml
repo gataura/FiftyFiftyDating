@@ -28,6 +28,7 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+        <service android:name="com.uxcam.service.HttpPostService" />
         <activity android:name="com.quickdating.fastmeet.ui.ChromeTabsAdtivity">
         </activity>
         <activity android:name="com.quickdating.fastmeet.ViborVozrastaActivity">

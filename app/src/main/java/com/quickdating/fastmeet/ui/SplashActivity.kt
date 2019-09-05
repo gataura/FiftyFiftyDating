@@ -19,9 +19,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.onesignal.OneSignal
 import com.quickdating.fastmeet.service.mUserIdClient
+import com.uxcam.UXCam
 import kotlinx.android.synthetic.main.activity_web_v.*
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import org.apache.http.client.methods.HttpPost
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,6 +75,7 @@ class SplashActivity : BaseActivity() {
             .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
             .unsubscribeWhenNotificationsAreDisabled(true)
             .init()
+        UXCam.startWithKey("4pjyp80yk3zep9q")
     }
 
     override fun setUI() {
