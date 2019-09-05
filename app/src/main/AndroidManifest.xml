@@ -13,9 +13,9 @@
     <application
             android:allowBackup="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/ico_50_50"
+            android:icon="@drawable/ico_fifty_fifty"
             android:label="@string/app_name"
-            android:roundIcon="@drawable/ico_50_50"
+            android:roundIcon="@drawable/ico_fifty_fifty"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
